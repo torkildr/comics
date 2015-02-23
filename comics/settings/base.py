@@ -68,6 +68,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'comics.core.middleware.MinifyHTMLMiddleware',
 )
@@ -84,7 +85,6 @@ INSTALLED_APPS = (
     'compressor',
     'invitation',
     'registration',
-    'south',
     'tastypie',
     'comics.core',
     'comics.accounts',
@@ -140,6 +140,8 @@ TIME_FORMAT = 'H:i'
 #: Time the user session cookies will be valid. 1 year by default.
 SESSION_COOKIE_AGE = 86400 * 365
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
 WSGI_APPLICATION = 'comics.wsgi.application'
 
 
@@ -162,19 +164,13 @@ COMPRESS_HTML = True
 
 ### django.contrib.auth settings
 
-LOGIN_URL = 'auth_login'
-LOGOUT_URL = 'auth_logout'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = (
     'comics.accounts.backends.AuthBackend',
     'django.contrib.auth.backends.ModelBackend'
 )
-
-
-### Testing settings
-
-TEST_DISCOVERY_ROOT = os.path.join(BASE_PATH, 'comics')
-TEST_RUNNER = 'comics.core.test_runner.DiscoveryRunner'
 
 
 ### django-registration settings
@@ -197,6 +193,11 @@ ACCOUNT_INVITATION_DAYS = 7
 
 #: Number of invitations each existing user can send
 INVITATIONS_PER_USER = 10
+
+
+### Tastypie settings
+
+TASTYPIE_DEFAULT_FORMATS = ['json', 'jsonp', 'xml', 'yaml', 'html', 'plist']
 
 
 ### comics settings

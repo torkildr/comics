@@ -5,6 +5,186 @@ Changes
 This change log is used to track all major changes to *comics* after the first
 versioned release.
 
+
+v2.4.1 (UNRELEASED)
+===================
+
+**Crawlers**
+
+- New: ``criticalmiss``
+
+
+v2.4.0 (2015-01-03)
+===================
+
+- Dependencies with new minimum versions:
+
+  - Django >= 1.7, < 1.8
+  - django-tastypie >= 0.12, < 0.13
+
+- Dependencies with new maximum versions:
+
+  - Pillow >= 1.7, < 2.8
+
+- Removed dependencies:
+
+  - South
+
+- Switched the database migrations from using South to the builtin tool in
+  Django 1.7. Due to this, all old database migrations have been thrown away.
+  If you're running an old version of *comics*, please upgrade to the latest
+  v2.3.x release first to get your database entirely up to date, then upgrade
+  to v2.4.x. There are no database changes between v2.3.x and v2.4.x.
+
+
+v2.3.4 (2015-01-03)
+===================
+
+**Crawlers**
+
+- New: ``awkwardzombie``
+- New: ``fatawesome``
+- New: ``lizclimo``
+- New: ``lunarbaboon``
+- Update ``zits`` to fetch from better source.
+- Update ``nerfnow`` after feed change.
+
+
+v2.3.3 (2014-10-06)
+===================
+
+**Crawlers**
+
+- New: ``nerdrage``
+- Update lots of comic release schedules.
+- Update: ``drmcninja`` after feed change.
+- Update: ``harkavagrant`` after site change.
+- Update: ``hijinksensue`` to fetch large images.
+- Update: ``lookingforgroup`` to not fetch unrelated comics.
+- Update: ``nedroid`` after feed change.
+- Update: ``pennyarcade`` to work around User-Agent check.
+- Update: ``pidjin`` to ignore repeated image.
+- Update: ``redmeat`` after site change.
+- Update: ``subnormality`` after page change.
+- Update: ``wondermark`` after feed change.
+- Inactive: ``marriedtothesea``
+- Inactive: ``pelsogpoter``
+- Inactive: ``threewordphrase``
+- Inactive: ``toothpastefordinner``
+- Inactive: ``virtualshackles``
+
+
+v2.3.2 (2014-09-11)
+===================
+
+- Dependencies with new maximum versions:
+
+  - django_compressor >= 1.1, < 1.5
+  - Pillow >= 1.7, < 2.6
+
+- Add crawler status page to the menu.
+
+- Fix position of "Add to my comics" button.
+
+- Make an attempt at fixing downloading of image URLs with non-ASCII chars in
+  the URL.
+
+**Crawlers**
+
+- New: ``blasternation``
+- New: ``cardboardcrack``
+- New: ``commitstrip``
+- New: ``lunche24``
+- New: ``q2qcomics``
+- Update: ``asofterworld`` after site change.
+- Update: ``doghouse`` after feed change.
+- Update: ``joyoftech`` after site change.
+- Update: ``kiwiblitz`` after site change.
+- Update: ``seemikedraw`` after site move.
+- Update: ``thegamercat`` after feed change.
+- Update: ``walkoflife`` is no longer published.
+
+
+v2.3.1 (2014-06-11)
+===================
+
+- Display error message instead of crashing if a password reset link is reused.
+
+**Crawlers**
+
+- New: ``iamarg``
+- Update: ``asofterworld`` after feed breakage.
+- Update: ``crookedgremlins`` after feed removal.
+- Update: ``darklegacy`` after site change.
+- Update: ``hijinksensue`` after feed change.
+- Update: ``lookingforgroup`` after feed change.
+- Update: ``mutts`` after site change.
+- Update: ``phd`` after feed change.
+- Update: ``poledancingadventures`` after site change.
+- Update: ``pcweenies`` after feed change.
+- Update: ``playervsplayer`` after site change.
+- Update: ``sinfest`` after site change.
+- Update: ``stickydillybuns`` after delayed feed update.
+- Update: ``yamac`` after site change.
+- Inactive: ``antics``
+- Inactive: ``boxerhockey``
+- Inactive: ``dungeond``
+- Inactive: ``eatthattoast``
+- Inactive: ``gregcomic``
+- Inactive: ``lunch``
+- Inactive: ``pinkparts``
+- Inactive: ``somethingofthatilk``
+- Inactive: ``thechalkboardmanifesto``
+
+
+v2.3.0 (2014-04-07)
+===================
+
+- Dependencies with new minimum versions:
+
+  - Django >= 1.6, < 1.7
+  - django-boostrap-form >= 3.1, < 3.2
+
+- Dependencies with new maximum versions:
+
+  - cssmin >= 0.1, < 0.3
+  - cssselector >= 0.8, < 0.10
+  - django-tastypie >= 0.9.13, < 0.12
+  - Pillow >= 1.7, < 2.5
+
+- Upgraded to Bootstrap 3, which gives way for a refreshed and more
+  responsive/mobile friendly design.
+
+- Upgraded to Font Awesome 4.
+
+- Upgraded to JQuery 2. IE6/7/8 are no longer supported. IE9 is the oldest IE
+  version you can expect to work with *comics*.
+
+- Moved comics list from bottom of each page to its own page in the top menu.
+  This makes it more available on mobile clients, as well as to new users that
+  don't know where to find the list after they've subscribed to their first
+  comic.
+
+- Use Moment.js to show time since fetched timestamp in release meta data.
+  This can't be done on the server side due to heavy caching.
+
+
+v2.2.3 (2014-03-31)
+===================
+
+- Make ``num_releases_since/:id`` view return 404 instead of 500 for unknown
+  release IDs.
+
+**Crawlers**
+
+- New: ``adam4d``
+- New: ``poorlydrawnlines``
+- Update: ``lookingforgroup`` after feed change.
+- Update: ``pennyarcade`` after site change.
+- Update: ``questionablecontent`` after site change.
+- Update: ``satw`` to include description text.
+
+
 v2.2.2 (2013-12-21)
 ===================
 
@@ -15,6 +195,7 @@ v2.2.2 (2013-12-21)
 - Update: ``partiallyclips`` to save larger image.
 - Update: ``scenesfromamultiverse`` after feed change.
 - Update: ``toothpastefordinner`` after feed change.
+
 
 v2.2.1 (2013-11-08)
 ===================

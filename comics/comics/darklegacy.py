@@ -12,11 +12,13 @@ class ComicData(ComicDataBase):
 
 class Crawler(CrawlerBase):
     history_capable_date = '2006-12-09'
+    schedule = 'Su'
     time_zone = 'US/Pacific'
 
     def crawl(self, pub_date):
         feed = self.parse_feed('http://www.darklegacycomics.com/feed.xml')
         for entry in feed.for_date(pub_date):
             title = entry.title
-            url = entry.link.replace('.html', '.jpg')
+            page = self.parse_page(entry.link)
+            url = page.src('img.comic-image')
             return CrawlerImage(url, title)

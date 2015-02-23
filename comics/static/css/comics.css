@@ -1,62 +1,34 @@
 html {
+    min-height: 100%;
+    position: relative;
     overflow-y: scroll;
 }
 
 body {
-    padding-top: 60px;
+    margin-bottom: 70px;
 }
 
-.navbar .nav > li > a.disabled,
-.navbar .nav > li > a.disabled:hover {
-    color: #000 !important;
-    opacity: 0.3;
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+
+    border-top: 1px solid #e7e7e7;
 }
-.navbar .nav .active > a,
-.navbar .nav .active > a:hover{
-    background: #e9e9e9;
-}
-.navbar .pull-right .btn-group:last-child {
-    padding-right: 0;
-}
-.navbar .btn-toolbar {
-    margin: 0;
-    margin-bottom: -3px;
+.footer .container {
+    padding-top: 15px;
 }
 
-h3 {
-    margin: 20px 0 10px;
+.browser-menu {
+    margin-bottom: 10px;
 }
-.modal h3 {
-    margin: 0;
-}
-h3 a:hover {
-    text-decoration: none;
-}
-h3 small {
-    color: #999;
-}
-
-h4 {
+.browser-menu .btn-group {
     margin-bottom: 10px;
 }
 
 .new-releases-alert {
     display: none;
-}
-.alert-info a {
-    color: #ddd;
-}
-
-.release h3,
-.release form {
-    margin: 0 0 12px;
-}
-.release .image img {
-    height: auto;
-    max-width: 100%;
-}
-.release .meta {
-    margin: 0;
 }
 
 .btn .confirmation,
@@ -64,36 +36,46 @@ h4 {
     display: none;
 }
 
-#cloud {
-    margin-bottom: 50px;
+.release h3 {
+    margin-top: 0;
 }
-#cloud .page-header {
-    margin-top: 40px;
-    padding-bottom: 5px;
-}
-#cloud a {
-    color: #404040;
-}
-#cloud li {
-    border-bottom: 1px solid #f5f5f5;
-    padding: 3px 0;
-}
-#cloud label {
+.release blockquote {
+    font-size: 14px;
     margin-bottom: 0;
 }
-#cloud .label {
-    margin-left: 3px;
-}
-#cloud .subscribed,
-#cloud .subscribed label {
-    font-weight: bold;
-}
-#cloud .inactive {
-    opacity: 0.4;
+
+.mycomics-toggle {
+    margin-left: 15px;
 }
 
-#feedback textarea {
-    width: 40em;
+.meta {
+    margin-bottom: 0;
+}
+
+.comics-list {
+    margin-bottom: 20px;
+}
+.comics-list a {
+    color: #404040;
+}
+.comics-list li {
+    border-bottom: 1px solid #eee;
+    padding: 3px 0;
+}
+.comics-list label {
+    font-weight: normal;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.comics-list .label {
+    margin-left: 3px;
+}
+.comics-list .subscribed,
+.comics-list .subscribed label {
+    font-weight: bold;
+}
+.comics-list .inactive {
+    opacity: 0.4;
 }
 
 #status td,
@@ -101,23 +83,22 @@ h4 {
     text-align: center;
 }
 #status .scheduled,
+#status .scheduled a,
 #status_legend .scheduled {
-    background: #cd0200;
-    color: #fff;
+    background: #f2dede;
+    color: #a94442;
 }
 #status .fetched,
+#status .fetched a,
 #status_legend .fetched {
-    background: #d47500;
-    color: #fff;
+    background: #d9edf7;
+    color: #31708f;
 }
 #status .fetched.scheduled,
+#status .fetched.scheduled a,
 #status_legend .fetched.scheduled {
-    background: #3cb521;
-    color: #fff;
-}
-#status .fetched a,
-#status .scheduled a {
-    color: #fff;
+    background: #dff0d8;
+    color: #3c763d;
 }
 #status_legend {
     width: auto;

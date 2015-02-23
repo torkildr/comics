@@ -130,12 +130,12 @@ var mycomicsEditor = (function () {
     return {
         edit: function (event) {
             event.preventDefault();
-            $('#cloud .edit-view').show();
-            $('#cloud .show-view').hide();
+            $('.comics-list .edit-view').removeClass('hide');
+            $('.comics-list .show-view').addClass('hide');
         },
         cancel: function (event) {
-            $('#cloud .show-view').show();
-            $('#cloud .edit-view').hide();
+            $('.comics-list .show-view').removeClass('hide');
+            $('.comics-list .edit-view').addClass('hide');
         }
     };
 })();
@@ -147,6 +147,12 @@ var fullSizeToggler = function (event) {
     } else {
         $('img', this).css('max-width', '100%');
     }
+};
+
+$.fn.momentify = function () {
+  return this.each(function () {
+    $(this).text(moment($(this).attr('datetime')).fromNow());
+  });
 };
 
 var newReleaseCheck = (function () {
@@ -167,7 +173,8 @@ var newReleaseCheck = (function () {
 
     var showNewReleaseNotification = function (numReleases) {
         var $el = $('.new-releases-alert');
-        $el.find('.new-release-count').html(numReleases);
+        $el.find('a').text(numReleases + (
+            numReleases == 1 ? ' new release' : ' new releases'));
         $el.slideDown();
     };
 
@@ -202,5 +209,6 @@ $(function () {
     $('.mycomics-edit').click(mycomicsEditor.edit);
     $('.mycomics-cancel').click(mycomicsEditor.cancel);
     $('.release .image a').click(fullSizeToggler);
+    $('.release time').momentify();
     newReleaseCheck();
 });

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import (
@@ -14,6 +14,14 @@ from django.views.generic import (
     DayArchiveView, TodayArchiveView, MonthArchiveView)
 
 from comics.core.models import Comic, Release
+
+
+@login_required
+def comics_list(request):
+    return render(request, 'browser/comics_list.html', {
+        'active': {'comics_list': True},
+        'my_comics': request.user.comics_profile.comics.all(),
+    })
 
 
 class LoginRequiredMixin(object):
@@ -268,7 +276,7 @@ class MyComicsMixin(object):
             self.get_user().comics_profile.secret_key)
 
     def get_feed_title(self):
-        return 'Your comics'
+        return 'My comics'
 
 
 class MyComicsHome(LoginRequiredMixin, RedirectView):
@@ -316,7 +324,8 @@ class MyComicsLatestView(MyComicsMixin, ReleaseLatestView):
 
 class MyComicsNumReleasesSinceView(MyComicsLatestView):
     def get_num_releases_since(self):
-        last_release_seen = Release.objects.get(id=self.kwargs['release_id'])
+        last_release_seen = get_object_or_404(
+            Release, id=self.kwargs['release_id'])
         releases = super(MyComicsNumReleasesSinceView, self).get_queryset()
         return releases.filter(fetched__gt=last_release_seen.fetched).count()
 

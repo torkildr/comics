@@ -38,7 +38,7 @@ class ReleaseDownloader(object):
         image_downloader = ImageDownloader(crawler_release)
         return map(image_downloader.download, crawler_release.images)
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def _create_new_release(self, comic, pub_date, images):
         release = Release(comic=comic, pub_date=pub_date)
         release.save()
@@ -84,6 +84,12 @@ class ImageDownloader(object):
 
     def _download_image(self, url, request_headers):
         try:
+            if isinstance(url, unicode):
+                # Ideally, we should keep the URLs in the original encoding or
+                # URI encoded all the way through the system. If we get Unicode
+                # strings here, our best guess is to encode them as UTF-8 so
+                # urllib2 can URI encode them properly.
+                url = url.encode('utf-8')
             request = urllib2.Request(url, None, request_headers)
             with contextlib.closing(urllib2.urlopen(request)) as http_file:
                 temp_file = tempfile.NamedTemporaryFile(suffix='comics')
@@ -142,7 +148,7 @@ class ImageDownloader(object):
         if checksum and extension:
             return '%s%s' % (checksum, extension)
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def _create_new_image(
             self, comic, title, text, image_file, file_name, checksum):
         image = Image(comic=comic, checksum=checksum)
